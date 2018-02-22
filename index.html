@@ -13,7 +13,7 @@
         background-size: 100%;
        }
       
-      #b_box {background-color: #424242; height: 100px; width:500px; }
+      #b_box {background-color: #424242; height:670px; width:240px;position: absolute;top:5px; z-index:-1;border-radius:40px; }
       #navbar {list-style-type: none;
         margin: 0;
         padding-left: 10px;
@@ -33,20 +33,17 @@
       #item span:after { content: '\00bb' ; opacity: 0; transition: 0.3s; }
       #item:hover span:after {opacity: 1; padding-right: 20px;}
       #item:hover {color:white; background-color:black;}
-      #s1 {border-radius: 30px;display: none;background-color: grey;text-decoration: none;}
+      #s1, #b, #a, #s2 {border-radius: 30px;display: none;background-color: grey;text-decoration: none; border:solid black;}
       #s1 a {border-radius: 30px;display:block;text-decoration: none; color: black;width: 150px; height: 50px; text-align: center;}
       #s1 a:hover, #b a:hover , #a a:hover , #s2 a:hover {transition: 0.5s;background-color:black; color:white;}
       #drop1 , #drop2, #drop3 , #drop4 {width: 20px; }
       #drop1:hover #s1 {display:list-item; padding-top: 10px; position: absolute;top: 10px;left: 215px; } 
-      #b {text-align: center; border-radius: 30px; display:none; background-color:grey;}
       #drop2:hover #b {display:list-item;padding-top: 10px; position:absolute; top:150px;left:215px}
       #b a {border-radius: 30px; display:block; text-decoration:none;color:black;background-color:grey; width: 150px; height: 50px;}
-      #a {display:none; background-color:grey;}
       #drop3:hover #a {display:list-item; padding-top:10px; position:absolute; top:300px;left:215px;}
-      #a a {display:block; text-decoration:none; color:black; width: 150px; height: 50px;}
-      #s2 {display:none; background-color:grey;}
+      #a a {display:block; text-decoration:none; color:black; width: 150px; height: 50px; border-radius: 30px;}
       #drop4:hover #s2 {display:block; padding-top:10px;position:absolute; top:450px; left:215px;}
-      #s2 a {display:block; text-decoration:none;width: 150px; height: 50px;color:black;}
+      #s2 a {display:block; text-decoration:none;width: 150px; height: 50px;color:black;border-radius: 30px;}
       #img1 {position:fixed; top: 0px; left: 35%; width:800px;height:100%;}
       #text1 {color: maroon; position:absolute; top: 5%; left: 45%; width: 400px;}
       #text2 {position:absolute; top: 15%; left: 40%; color:maroon; width: 500px;}
