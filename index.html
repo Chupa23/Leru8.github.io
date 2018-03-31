@@ -7,13 +7,23 @@
       }
       #top_bar {
        background-color: black;
-       height:10%;width:100%;
-       border: solid black 20px;
+       height:200px;width:100%;
+       border-bottom: solid black 60px;
        position:absolute; top: 0px; left: 0px;
       }
-      #bar_img {position:absolute; height: 140px;width: 350px; left: 0px;top: -40px}
+      #bar_img {position:absolute; height: 230px;width: 650px; left: 150px;top: -10px}
       #video {
-      	position: absolute; top: 30%; left: 25%; width: 50%;height: 60%;
+      	position: absolute; top: 45%; left: 30px; width: 885px;height: 40%;
+      }
+      #back_v {
+        border-radius: 60px;
+        background-color: black;
+        position: absolute; top: 42%;
+        height: 45%; width: 925px;
+        z-index: -2;
+      }
+      #a1 {
+        position: absolute;left: -7px;top: 40px;
       }
 
     </style>
@@ -23,7 +33,9 @@
   	<video id="video" controls>
   		<source src="btv.mp4" type="video/mp4" >
   	</video>
-    <div id="top_bar"> . </div>
+    <div id="top_bar"></div>
+    <div id="back_v"> </div>
     <img id="bar_img" src="bs3.gif">
+    <img id="a1" src="aurelv2_0.png">
   </body>
 </hmtl>
