@@ -1,93 +1,29 @@
 <!doctype html>
-
-<html> 
+<html>
   <head>
-  	<title>The Music </title>
-  	<link rel="shortcut icon" href="logo.ico" />
     <style type="text/css"> 
-      
       body {
-        background-color: #545454;
-        background-image: url(background0.png);
-        background-repeat: none;
-        background-size: 100%;
-       }
-      
-      #b_box {background-color: #424242; height:670px; width:240px;position: absolute;top:5px; z-index:-1;border-radius:40px; }
-      #navbar {list-style-type: none;
-        margin: 0;
-        padding-left: 10px;
-        backgroud-color:black;
-        }
-      #item {display: block;
-        width: 200px;
-        height: 100px;
-        background-color: grey;
-        border: solid #424242 10px;
-        text-align: center;
-        padding-top: 45px;
-        font-size: 30px;
-        border-radius: 30px;
-        }
-      #item span { transition: 0.3s}
-      #item span:after { content: '\00bb' ; opacity: 0; transition: 0.3s; }
-      #item:hover span:after {opacity: 1; padding-right: 20px;}
-      #item:hover {color:white; background-color:black;}
-      #s1, #b, #a, #s2 {border-radius: 30px;display: none;background-color: grey;text-decoration: none; border:solid black;}
-      #s1 a {border-radius: 30px;display:block;text-decoration: none; color: black;width: 150px; height: 50px; text-align: center;}
-      #s1 a:hover, #b a:hover , #a a:hover , #s2 a:hover {transition: 0.5s;background-color:black; color:white;}
-      #drop1 , #drop2, #drop3 , #drop4 {width: 20px; }
-      #drop1:hover #s1 {display:list-item; padding-top: 10px; position: absolute;top: 10px;left: 215px; } 
-      #drop2:hover #b {display:list-item;padding-top: 10px; position:absolute; top:150px;left:215px}
-      #b a {border-radius: 30px; display:block; text-decoration:none;color:black;background-color:grey; width: 150px; height: 50px;}
-      #drop3:hover #a {display:list-item; padding-top:10px; position:absolute; top:300px;left:215px;}
-      #a a {display:block; text-decoration:none; color:black; width: 150px; height: 50px; border-radius: 30px;}
-      #drop4:hover #s2 {display:block; padding-top:10px;position:absolute; top:450px; left:215px;}
-      #s2 a {display:block; text-decoration:none;width: 150px; height: 50px;color:black;border-radius: 30px;}
-      #img1 {position:fixed; top: 0px; left: 35%; width:800px;height:100%;z-index:-3;}
-      #text1 {color: maroon; position:absolute; top: 5%; left: 45%; width: 400px;z-index:-2;}
-      #text2 {position:absolute; top: 15%; left: 40%; color:maroon; width: 500px;z-index:-2;}
-      a {padding:20px 30px 20px 30px;}
-      
+       background-color: maroon;
+      }
+      #top_bar {
+       background-color: black;
+       height:10%;width:100%;
+       border: solid black 20px;
+       position:absolute; top: 0px; left: 0px;
+      }
+      #bar_img {position:absolute; height: 15%;width: 20%; left: 0px;top: -5px}
+      #video {
+      	position: absolute; top: 30%; left: 25%; width: 50%;height: 60%;
+      }
+
     </style>
   </head>
 
-  <body>
-  	
-   
-    <ul id="navbar"> 
-      <div id="drop1"><li id="item"><span>Singers</span></li>
-       <div id="s1"><a href="mm.html">Marilyn Manson</a>
-        <a href="">Johannes Eckerstrom</a> <br />
-        <a href=""> Corey Taylor</a></div></div>
-      <div id="drop2" ><li id="item"><span>Bands</span> </li> 
-         <div id="b"><a href=""> Avatar</a> <br />
-        <a href="">  Slipknot</a> <br/>
-        <a href=""> Apocalyptica</a>
-     </div>
-      </div>
-      <div id="drop3" ><li id="item"><span>Albums</span></li> 
-        <div id="a"> <a href="">Link7 </a> <br />
-          <a href="">Link8 </a> <br/>
-          <a href="">Link9</a> <br />
-          <a href="">Link10 </a>
-        </div>
-      </div>
-      <div id="drop4" ><li id="item"><span>Songs</span></li> 
-        <div id="s2"> <a href=""> Link11</a> <br/>
-       <a href=""> Link12</a><br/>
-       <a href=""> Link13</a> </div>
-      </div>
-    </ul>
-    
-    <img id="img1"  src="main.png"> </img>
-    <div id="text1" ><h1>About the site</h1> </div>
-    <div id="text2" > <p>Some Text .,</p></div>
-    
-   <!--delete on pc-->
-    <p id="p">.</p> 
-    
-    <div id="b_box"> </div>
-    
- </body>
-</html>
+  <body> 
+  	<video id="video" controls>
+  		<source src="btv.mp4" type="video/mp4" >
+  	</video>
+    <div id="top_bar"> . </div>
+    <img id="bar_img" src="bs3.gif">
+  </body>
+</hmtl>
