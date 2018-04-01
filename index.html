@@ -14,27 +14,37 @@
       }
       #bar_img {position:absolute; height: 230px;width: 650px; left: 150px;top: -10px}
       #video {
-      	position: absolute; top: 55%; left: 30px; width: 885px;height: 40%;
+      	position: absolute; top: 755px; left: 30px; width: 90%;height: 500px;
       }
       #back_v {
         border-radius: 60px;
         background-color: black;
-        position: absolute; top: 55%;
-        height: 45%; width: 925px;
+        position: absolute; top: 660px;
+        height: 700px; width: 95%;
         z-index: -2;
       }
       #a1 {
         position: absolute;left: -7px;top: 40px;
       }
       #m1 {
-        position: absolute; top:25%; left: 10%; z-index: -5;
-        width: 25%;
+        position: absolute; top:300px; left: 10%; z-index: -5;
+        width: 20%;
       }
       #m2 {
-         position: absolute; top:25%; left: 60%; z-index: -5;
-        width: 25%;
+         position: absolute; top:300px; left: 60%; z-index: -5;
+        width: 20%;
        }
-
+      
+      
+      #fng {
+        position: absolute;top: 400px;left: 40%;
+      }
+      #fng:hover {animation: bfng 2s ;  }
+      @keyframes bfng {
+        0% {top: 400px;}
+        50% {top: 440px;}
+        100% {top: 400px;}
+      }
     </style>
   </head>
 
@@ -48,5 +58,7 @@
     <img id="a1" src="aurelv2_0.png">
     <img  id="m1" src="m1.png">
     <img id="m2" src="m2.png">
+    <img id="fng" src="fd.png"> 
+    
   </body>
 </hmtl>
