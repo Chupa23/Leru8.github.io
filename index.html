@@ -1,65 +1,96 @@
 <!doctype html>
-<html>
+<html> 
   <head>
-    <title>Aurel traieste! </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type="text/css"> 
-      body {
-       background-color: maroon;
-      }
-      #top_bar {
-       background-color: black;
-       height:200px;width:100%;
-       border-bottom: solid black 60px;
-       position:absolute; top: 0px; left: 0px;
-      }
-      #bar_img {position:absolute; height: 230px;width: 650px; left: 150px;top: -10px}
-      #video {
-      	position: absolute; top: 755px; left: 30px; width: 90%;height: 500px;
-      }
-      #back_v {
-        border-radius: 60px;
-        background-color: black;
-        position: absolute; top: 660px;
-        height: 700px; width: 95%;
-        z-index: -2;
-      }
-      #a1 {
-        position: absolute;left: -7px;top: 40px;
-      }
-      #m1 {
-        position: absolute; top:300px; left: 10%; z-index: -5;
-        width: 20%;
-      }
-      #m2 {
-         position: absolute; top:300px; left: 60%; z-index: -5;
-        width: 20%;
-       }
+
+  	<style type="text/css" > 
       
-      
-      #fng {
-        position: absolute;top: 400px;left: 40%;
-      }
-      #fng:hover {animation: bfng 1.4s infinite ;  }
-      @keyframes bfng {
-        0% {top: 400px;}
-        50% {top: 460px;}
-        100% {top: 400px;}
-      }
+      #num_1 , #num_2 { width: 20px; } 
+      #num_1 {position: absolute; left: 25%;top: 20%;}
+      #num_2 {position: absolute; left: 30%;top: 20%}
+      #selected {position: absolute; left: 28%; top: 18%;}
+      #calculate {position: absolute; left: 33%; top: 20%}
+      #result {width: 50px; position: absolute; left: 37%; top: 18%}
+      #select {display: none;}
+      #op:hover #select {display: block; position: absolute; top: 22%;left: 28%;}
+      ul { list-style: none; }
+      #select_list {position: absolute;left: -20px; top: -10px; text-align: center;text-align: center; padding-left: 5px;
+      	padding-right: 5px;padding-top: 3px; padding-bottom: 3px;}
+      #buton_s {text-align: center; padding-right: 20px;width: 10px;}
+      #cl {position: absolute;left: 25%; top: 15%;}
     </style>
+
   </head>
 
   <body> 
-  	<video id="video" controls>
-  		<source src="fbb_1.mp4" type="video/mp4" >
-  	</video>
-    <div id="top_bar"></div>
-    <div id="back_v"> </div>
-    <img id="bar_img" src="bs3.gif">
-    <img id="a1" src="aurelv2_0.png">
-    <img  id="m1" src="m1.png">
-    <img id="m2" src="m2.png">
-    <img id="fng" src="fd.png"> 
-    
+  	<button id="cl" onclick="clean()"> Clean</button>
+  	<input type="text" id="num_1"> 
+  	<div id="op"><p id="selected">+</p>
+  	<div id="select">
+  	  <ul id="select_list">
+      <li><button id="buton_s" onclick="schimba_inmultire()">*</button></li>
+      <li><button id="buton_s" onclick="schimba_adunare()">+</button></li>
+      <li><button id="buton_s" onclick="schimba_scadere()">-</button></li>
+      <li><button id="buton_s" onclick="schimba_impartire()">/</button></li>
+  	</ul> </div>  </div>
+
+  	<input type="text" id="num_2"> 
+    <p id="result">___</p>
+    <button id="calculate" onclick="cacluleaza()">=</button>
+    <script type="text/javascript">
+      
+      function cacluleaza() {
+       var operation = document.getElementById("selected").textContent;
+       switch (operation){
+
+        case "+" : aduna(); break;
+        case "*" : inmultire(); break;
+        case "-" : scadere() ; break;
+        case "/" : impartire() ; break;
+
+      }}
+
+      function aduna() {
+      var y = parseInt(document.getElementById("num_1").value);
+      var z = parseInt(document.getElementById("num_2").value);
+      var x = y + z;
+      document.getElementById("result").innerHTML = x;
+      }
+
+      function inmultire() {
+      var y = parseInt(document.getElementById("num_1").value);
+      var z = parseInt(document.getElementById("num_2").value);
+      var x = y * z;
+      document.getElementById("result").innerHTML = x;
+      }
+      
+      function impartire() {
+      var y = parseInt(document.getElementById("num_1").value);
+      var z = parseInt(document.getElementById("num_2").value);
+      var x = y / z;
+      document.getElementById("result").innerHTML = x;
+      }
+
+      function scadere(){
+      var y = parseInt(document.getElementById("num_1").value);
+      var z = parseInt(document.getElementById("num_2").value);
+      var x = y - z;
+      document.getElementById("result").innerHTML = x;
+      }
+
+      function schimba_inmultire() { document.getElementById("selected").innerHTML = "*"}
+      function schimba_adunare() {document.getElementById("selected").innerHTML = "+"}
+      function schimba_impartire() {document.getElementById("selected").innerHTML = "/"}
+      function schimba_scadere() {document.getElementById("selected").innerHTML = "-"}
+      
+      function clean() { 
+       document.getElementById("result").innerHTML = " ";
+       var cl1 = document.getElementById("num_1");
+       var cl2 = document.getElementById("num_2");
+       cl1.value = " ";
+       cl2.value = " ";
+          }
+    </script>
+  
   </body>
-</hmtl>
+
+</html>
