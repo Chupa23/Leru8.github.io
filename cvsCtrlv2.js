@@ -1,49 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" >
-  <head>
-    <meta charset="utf-8">
-    <title>Canvas</title>
-    <style type="text/css">
-      canvas {border: 1px solid black;}
-      body {
-       width: 100%;
-       height: 100%;
-       margin : 0 ;
-       border: 0;
-       background-color: grey;
-          }
-    button {
-      position: absolute;
-     height: 50px;
-     width: 60px;
-}
-
-   .butonD {
-
-top: 70px;
-left: 40px;
-}
-  .butonS {
-   
-    top : 10px;
-    left:40px;
-  }
-
-
-    </style>
-  </head>
-  <body>
-    
-    <button class="butonD" onclick="jump()" > | </button>
-    <button class="butonS" onclick='start()' > start </button>
-    
-    <canvas id="canvas"> </canvas>
-
-    
-    <script type="text/javascript">
-
-
-    var canvas = document.getElementById('canvas')
+var canvas = document.getElementById('canvas')
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 var ctx= canvas.getContext('2d')
@@ -128,8 +83,4 @@ function animate(){
      obsArray[i].update();
   }
 }
-</script>
 
-
-  </body>
-</html>
