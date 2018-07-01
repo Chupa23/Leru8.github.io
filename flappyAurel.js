@@ -27,12 +27,12 @@
     function draw () {
       
       ctx.drawImage(cImg, x , y, carW, carH);
-     if (y>0 && y+carH<canvas.height ) {
+     if (y+carH<canvas.height ) {
       y+=dy;
-      dy+=1.5;
+      dy+=1.2;
      }
-     else if (y+carH>=canvas.height || y<=0)
-     { animation=false;}
+     else if (y+carH>=canvas.height)
+     { GameOver();}
     
     }
      
@@ -42,26 +42,82 @@
      this.oy=oy;
      this.oh = oh;
      this.drawObs = function(){
+      ctx.beginPath();
+      ctx.globalCompositeOperation='destination-over';
       ctx.fillStyle='black'
       ctx.fillRect(this.ox, this.oy, ow , this.oh);
       ctx.fillRect(this.ox,this.oy+this.oh + obsGap, ow, innerHeight )
+      ctx.closePath();
      }
     
      this.update = function(){
        this.ox-=2;
        if (this.ox+ow<=x&&this.ox+ow>=x-1){
-         scr++   
+         scr++  ;
+         if (scr==30){
+           alert('Ai castigat o chestie!');
+           animation=false;
+           
+           jump();
+         }
+
        }
        if(((x>=this.ox&&x<this.ox + ow) || (x+carW>=this.ox&&x+carH<this.ox+ow) ) && 
        (y<=this.oh || y+carH>=this.oh+obsGap))
-        { animation=false;}
+        {GameOver()}
       
        this.drawObs();
      }
     }
+    
+    var lostTextArray = [
+      "Ai pierdut",
+      "Esti praf!",
+      "Atat poti?",
+      "Te credeam in stare de mai mult",
+      "Trist, pur si simplu trist"
+    ]
+    //GameOver
+     function GameOver(){
+      this.lostText=lostTextArray[Math.floor(Math.random() * lostTextArray.length)];
+      ctx.beginPath();
+      ctx.fillStyle='maroon';
+      ctx.font = '35px Arial';
+
+
+      this.printAt = function( context , text, x, y, lineHeight, fitWidth)
+  {
+    fitWidth = fitWidth || 0;
+    
+    if (fitWidth <= 0)
+    {
+         context.fillText( text, x, y );
+        return;
+    }
+    
+    for (var idx = 1; idx <= text.length; idx++)
+    {
+        var str = text.substr(0, idx);
+        if (context.measureText(str).width > fitWidth)
+        {
+            context.fillText( text.substr(0, idx-1), x, y );
+            printAt(context, text.substr(idx-1), x, y + lineHeight, lineHeight,  fitWidth);
+            return;
+        }    context.fillText( text, x, y );
+      }
+    }
+    ctx.closePath();
+    this.printAt(ctx,this.lostText, 20,150 , 50, innerWidth-50 );
+       animation=false;
+      
+   
      
+     }
+
+
     //Score
     function score(){
+      ctx.globalCompositeOperation='source-over';
       this.scre = scr.toString();
       ctx.fillStyle='red'
       ctx.font= '100px Arial'
@@ -71,7 +127,7 @@
 
     // Create Obstacles
     var obsArray = [];
-    var obsNum=69;
+    var obsNum=30;
     function pushObs(){
       obsArray=[];
       oxp = innerWidth -ow;
@@ -87,17 +143,24 @@
       
     }}
     
+
     //Start Game
-    function start(){
+
+    function jump(){
+      if (animation==true){
+      dy=-17;}
+      this.restart = function(){
+        animation=true;}
       if(animation==false){
-      animation = true;
-      x=20; y=200+1;dy=-20;scr=0;
-      animate();
-      pushObs();}
+        this.restart()
+        x=20; y=200+1;dy=-20;scr=0;
+        animate();
+        pushObs();
+        
+        
+    
     }
-    
-    
-    function jump(){dy=-15;}
+    }
     
     
     function animate(){
@@ -110,5 +173,6 @@
         
          score();
       }
-      console.log(scr)
+      console.log(animation)
     }
+  
