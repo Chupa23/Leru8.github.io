@@ -6,7 +6,11 @@
     var ctx= canvas.getContext('2d')
 
     window.addEventListener('click' , jump);
+    window.addEventListener('resize' , function(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight; init();})
 
+    var game = false;
     var carW = 50;
     var carH = 50; 
     var x= 20;
@@ -19,13 +23,16 @@
     var oh ;
     var animation=false;
     var scr=0;
-    var cImg= document.getElementById("charImg");
     
-
+   function init(){
+     GameOver();
+     rsGame();
+   }
 
     //draw character
     function draw () {
-      
+      var cImg= new Image();
+      cImg.src='Aurel.png'
       ctx.drawImage(cImg, x , y, carW, carH);
      if (y+carH<canvas.height ) {
       y+=dy;
@@ -33,10 +40,13 @@
      }
      else if (y+carH>=canvas.height)
      { GameOver();}
-    
     }
      
     //draw Obstacles
+    var ObsImage= new Image();
+    ObsImage.src= 'obs.png'
+    var ObsBImage= new Image();
+    ObsBImage.src= 'obsB.png'
     function obstacle(ox,oy){
      this.ox=ox;
      this.oy=oy;
@@ -45,8 +55,8 @@
       ctx.beginPath();
       ctx.globalCompositeOperation='destination-over';
       ctx.fillStyle='black'
-      ctx.fillRect(this.ox, this.oy, ow , this.oh);
-      ctx.fillRect(this.ox,this.oy+this.oh + obsGap, ow, innerHeight )
+      ctx.drawImage(ObsImage,this.ox, this.oy, ow , this.oh);
+      ctx.drawImage(ObsBImage,this.ox,this.oy+this.oh + obsGap, ow, innerHeight )
       ctx.closePath();
      }
     
@@ -55,27 +65,26 @@
        if (this.ox+ow<=x&&this.ox+ow>=x-1){
          scr++  ;
          if (scr==30){
-           alert('Ai castigat o chestie!');
+           alert('Ai castigat ceva!');
            animation=false;
-           
            jump();
-         }
-
-       }
+         }}
        if(((x>=this.ox&&x<this.ox + ow) || (x+carW>=this.ox&&x+carH<this.ox+ow) ) && 
        (y<=this.oh || y+carH>=this.oh+obsGap))
         {GameOver()}
-      
+
+       if (this.ox== innerWidth-250){
+          pushNewObs();
+       }
        this.drawObs();
      }
     }
     
     var lostTextArray = [
-      "Ai pierdut",
+      "Ai pierdut?",
       "Esti praf!",
       "Atat poti?",
-      "Te credeam in stare de mai mult",
-      "Trist, pur si simplu trist"
+      "Pur si simplu trist.."
     ]
     //GameOver
      function GameOver(){
@@ -83,85 +92,80 @@
       ctx.beginPath();
       ctx.fillStyle='maroon';
       ctx.font = '35px Arial';
-
-
-      this.printAt = function( context , text, x, y, lineHeight, fitWidth)
-  {
-    fitWidth = fitWidth || 0;
-    
-    if (fitWidth <= 0)
-    {
-         context.fillText( text, x, y );
-        return;
-    }
-    
-    for (var idx = 1; idx <= text.length; idx++)
-    {
-        var str = text.substr(0, idx);
-        if (context.measureText(str).width > fitWidth)
-        {
-            context.fillText( text.substr(0, idx-1), x, y );
-            printAt(context, text.substr(idx-1), x, y + lineHeight, lineHeight,  fitWidth);
-            return;
-        }    context.fillText( text, x, y );
-      }
-    }
-    ctx.closePath();
-    this.printAt(ctx,this.lostText, 20,150 , 50, innerWidth-50 );
+        ctx.fillText(this.lostText , 10,200)
+     ctx.closePath();
        animation=false;
-      
-   
-     
-     }
+       game=false;
+       }
 
 
     //Score
     function score(){
       ctx.globalCompositeOperation='source-over';
       this.scre = scr.toString();
-      ctx.fillStyle='red'
+      ctx.fillStyle='maroon'
       ctx.font= '100px Arial'
       ctx.fillText (this.scre, 40, 80)
     }
 
-
     // Create Obstacles
     var obsArray = [];
-    var obsNum=30;
+    
     function pushObs(){
       obsArray=[];
-      oxp = innerWidth -ow;
-      oyp = 0;
-      
-    for (var i = 0; i< obsNum ;i++) {
-       var ox= oxp;
-       var oy= oyp;
-       oh= Math.random()*200+100;
-       obsArray.push(new obstacle(ox,oy))
-      
-       oxp+=250;
-      
-    }}
+      pushNewObs();
+      }
+
+      function pushNewObs(){
+        oxp = innerWidth;
+        oyp = 0;
+     
+        var ox= oxp;
+        var oy= oyp;
+        oh= Math.random()*200+100;
+         obsArray.push(new obstacle(ox,oy))
+         
+        oxp+=250;
+        }
     
 
     //Start Game
-
+   
     function jump(){
-      if (animation==true){
-      dy=-17;}
-      this.restart = function(){
-        animation=true;}
-      if(animation==false){
-        this.restart()
+      if (game){
+        if (!animation){
+          animation=true;
+          animate();
+        }
+        if (animation) {
+          dy=-17
+        }
+      }
+    }
+    
+    function hideButtons(){
+      if (game){
+      document.getElementById('rsButton').style.opacity= "0";
+    }
+     if (!game){
+      document.getElementById('rsButton').style.opacity= "1";
+     }
+   }
+
+    function rsGame(){
+      setTimeout(ResetGame, 100);
+    }
+
+    function ResetGame(){
+      if (!game){
+      if (!animation) {
         x=20; y=200+1;dy=-20;scr=0;
-        animate();
+        animation=true;
+        animate()
         pushObs();
-        
-        
-    
-    }
-    }
-    
+        animation=false;
+        game=true;}
+    }}
     
     function animate(){
       if (animation){
@@ -169,10 +173,12 @@
       ctx.clearRect(0,0, innerWidth, innerHeight);
       draw();
       for (var i = 0; i<obsArray.length;i++){
-         obsArray[i].update();
+        if (obsArray[i].ox>-ow){
+         obsArray[i].update();}
         
          score();
       }
+      hideButtons();
       console.log(animation)
     }
   
