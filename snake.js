@@ -1,7 +1,8 @@
 cvs=document.getElementById('canvas');
 ctx=cvs.getContext('2d');
 
-document.addEventListener('keydown' , setDirectionK)
+document.addEventListener('keydown' ,setDirectionK)
+var tmOut;
 var score=0;
 var box=17;
 var snake=[];
@@ -15,6 +16,7 @@ function setDirectionK(event){
   if (key==38&&d!='down'){d='up'}
   if (key==39&&d!='left'){d='right'}
   if (key==40&&d!='up'){d='down'}
+  if (key==82){restart()}
 }
 
 function setDirectionB(dir){
@@ -29,8 +31,8 @@ snake[0]= {
 }
 
 var food = {
-   x:(Math.floor((Math.random()*20)))*box,
-   y:Math.floor((Math.random()*20))*box
+   x:(Math.floor((Math.random()*18+1)))*box,
+   y:Math.floor((Math.random()*18+1))*box
 }
 
 function restart(){
@@ -40,7 +42,11 @@ function restart(){
     snake=[];
     d='';
     game = true
-    animate = setInterval(draw,70);
+    food = {
+        x:(Math.floor((Math.random()*18+1)))*box,
+        y:Math.floor((Math.random()*18+1))*box
+     }
+    animate = setInterval(draw,90);
     snake[0]= {
         x:2*box,y:2*box
     }}
@@ -53,6 +59,8 @@ function draw(){
    for(var i=0; i<snake.length;i++){
        ctx.fillStyle=(i==0)?'black':'white';
        ctx.fillRect(snake[i].x,snake[i].y,box,box)
+       ctx.strokeStyle='black';
+       ctx.strokeRect(snake[i].x,snake[i].y,box,box)
    }
 ctx.fillStyle='maroon'
 ctx.fillRect(food.x,food.y,box,box)
@@ -60,10 +68,11 @@ ctx.fillRect(food.x,food.y,box,box)
    var snakeX=snake[0].x;
    var snakeY=snake[0].y;
 
- if (d=='left'){snakeX-=box;}
- if (d=='up'){snakeY-=box;}
- if (d=='right'){snakeX+=box;}
- if (d=='down'){snakeY+=box;}
+
+   if (d=='left'){snakeX-=box;}
+   if (d=='up'){snakeY-=box;}
+   if (d=='right'){snakeX+=box;}
+   if (d=='down'){snakeY+=box;}
 
  if (snakeX==-box||snakeX==20*box||snakeY==-box||snakeY==20*box)
  {game=false;}
@@ -76,8 +85,8 @@ if (snakeX==food.x&&snakeY==food.y){
     sc=score.toString()
     document.getElementById('scr').innerHTML= sc;
  food = {
-    x:Math.floor((Math.random()*20))*box,
-    y:Math.floor((Math.random()*20))*box
+    x:Math.floor((Math.random()*18+1))*box,
+    y:Math.floor((Math.random()*18+1))*box
 }
 }
 else {
@@ -90,17 +99,18 @@ else {
 
 }
 
+function checkDir(){
+   if (d=='left'){draw.snakeX-=box;}
+   if (d=='up'){draw.snakeY-=box;}
+   if (d=='right'){draw.snakeX+=box;}
+   if (d=='down'){draw.snakeY+=box;}
+}
 //------------------------------------------------------------
-function animation(){
-    if(game){
-    ctx.clearRect(0,0,innerWidth,innerHeight)
- 
-}}
 
-var animate = setInterval(draw,70);
+var animate = setInterval(draw,90);
 function gameOver(){
     
     if (!game){clearInterval(animate)}
 }
-var anm = setInterval(gameOver, 70);
-animation()
+var anm = setInterval(gameOver, 90);
+var dirChg= setInterval(checkDir , 90)
