@@ -1,65 +1,55 @@
-<html>
+<html> 
     <head>
-        <title>Snake</title>
         <style type="text/css">
-           body {
-               background-color: #1C1A21}
-
-             #scr {
-                 position:absolute;
-                 top :355px;
-                 left:10px;
-                 font-size: 50px;
-                 color: #FFFCF0}
-
-            #startB {
-                position: absolute;
-                top :355px;
-                left:10px;
-                background-color: #0C2733;
-                color:#FFFCF0;
-                font-family: Palatino;
-                font-size:20px;
-                border: 5px solid #053138;
-                border-radius: 10px;
-            }     
-            #dirB {
-                font-family: Palatino;
-                font-size:30px;
-                color :#FFFCF0;
-                background-color: #053138;
-                border:5px solid #0C2733;
-                border-radius: 10px;
-                width: 90px;
-                height: 70px;
-                position: absolute;
-            }
-            .upB {top :380px;
-                left: 125px;
-            }
-            .leftB {
-                left:35px;
-                top:450px;
-            }
-            .downB {
-                left: 125px;
-                top:520px;
-            }
-            .rightB {
-                left:215px;
-                top:450px;
-            }
+         * {
+             padding: 0px;
+             margin: 0px;
+         }
+         body {
+             background-color: #240F0E;
+         }
+          .head {grid-area: hd;background-color: #75041E;}
+          .cont1 {grid-area: ct1}
+          .cont2 {grid-area: ct2}
+          .grid {
+              display: grid;
+              grid-template-areas: 
+              'hd hd'
+              'ct1 ct2';
+              grid-gap: 10px;
+              padding: 10px;
+          }
+          #content {background-color:#41000D;}
+          .grid > div {
+  
+              padding-top: 10px; 
+              padding-bottom: 10px; 
+              text-align: center;
+              border:2px solid #615B52;
+              color:#CFC2AF;
+              font-size: 30px;
+          }
+          a {
+            color:#CFC2AF;
+            text-decoration: none;
+          }
+          .subHeader {
+              color: white;
+              border: 1px solid black;
+          }
         </style>
     </head>
 
     <body>
-        <canvas id="canvas" width="340" height="340"></canvas>
-        <script src="snake.js"> </script>
-        <button id="startB" onclick="restart()">Start</button>
-        <button class="leftB" id="dirB" onclick="setDirectionB('left')">Left</button>
-        <button class="upB"id="dirB" onclick="setDirectionB('up')">Up</button>
-        <button class="rightB"id="dirB" onclick="setDirectionB('right')">Right</button>
-        <button class="downB"id="dirB" onclick="setDirectionB('down')">Down</button>
-        <h1 id="scr"> 0 </h1>
+        <div class="grid">
+            <div class="head"> <p>Aici ar trebui sa fie ceva</p></div>
+            <div id="content" class="cont1"> <p class="SubHeader">online</p> <br /> <p> (indisponibil)</p></div>
+            <div id='content' class="cont2">  <p class="SubHeader">downlaod</p> <br/ > 
+
+                 <a href="FlappyAurel/FlappyAurel.apk"  download> <p>FlappyAurel</p> </a><br />
+                 <a href="Snake/Snake.zip"  download> <p>Snake</p> </a>
+                
+                </div>
+        </div>
     </body>
 </html>

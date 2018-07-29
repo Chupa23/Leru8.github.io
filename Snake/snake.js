@@ -2,13 +2,16 @@ cvs=document.getElementById('canvas');
 ctx=cvs.getContext('2d');
 
 document.addEventListener('keypress' ,setDirectionK)
-
+var fps=45;
 var score=0;
 var box=17;
 var snake=[];
 var game=true;
 var d ;
+var dr;
 var j=0;
+var grow=false;
+var growFct=0;
 var food = {
     x:Math.floor((Math.random()*20))*box,
     y:Math.floor((Math.random()*20))*box
@@ -19,13 +22,19 @@ snake[0]= {
     x:2*box,y:2*box
 }
 
+
+ var verDir = setInterval(dirVer, 1000/fps)
+function dirVer(){if(snake[0].x%box==0&&snake[0].y%box==0)
+    {
+        d=dr;
+    }}
 function setDirectionK(event){
-    var key=event.keyCode;   
-  if (key==37&&d!='right'){d='left'}
-  if (key==38&&d!='down'){d='up'}
-  if (key==39&&d!='left'){d='right'}
-  if (key==40&&d!='up'){d='down'}
-  if (key==82){restart()}  
+var key=event.keyCode;   
+  if (key==37&&d!='right'){dr='left'}
+  else if (key==38&&d!='down'){dr='up'}
+  else if (key==39&&d!='left'){dr='right'}
+  else if (key==40&&d!='up'){dr='down'}
+  else if (event.which==82){console.log('restart')}  
 }
 
 function setDirectionB(dir){
@@ -41,6 +50,7 @@ function restart(){
     document.getElementById('scr').innerHTML= '0';
     snake=[];
     d='';
+    dr='';
     game = true
     food = {
         x:Math.floor((Math.random()*20))*box,
@@ -49,7 +59,7 @@ function restart(){
      snake[0]= {
         x:2*box,y:2*box
     }
-    animate = setInterval(draw,90);
+     animate = setInterval(draw,1000/fps);
 } 
 }
 
@@ -58,8 +68,17 @@ function restart(){
 function draw(){
     ctx.fillStyle='#631723';
     ctx.fillRect(0,0,innerWidth,innerHeight);
+
+//draw test grid_____________________________________________
+//___________________________________________________
+// for(var i=0;i<innerWidth;i+=box){ 
+//     for(var j=0;j<innerHeight;j+=box){
+//      ctx.strokeRect(i,j,box,box)
+//}}
+//____________________________________________________
+
    for(var i=0; i<snake.length;i++){
-       ctx.fillStyle=(i==0)?'#053138':'#0C2733';
+       ctx.fillStyle=(i<=2)?'#053138':'#0C2733';
        ctx.fillRect(snake[i].x,snake[i].y,box,box)
    }
 
@@ -67,15 +86,16 @@ ctx.drawImage(foodImg,food.x,food.y,box,box);
    
    var snakeX=snake[0].x;
    var snakeY=snake[0].y;
-
-   
-   if (d=='left'){snakeX-=box;}
-   if (d=='up'){snakeY-=box;}
-   if (d=='right'){snakeX+=box;}
-   if (d=='down'){snakeY+=box;}
+  
+   this.drVer = function(){
+   if (d=='left'){snakeX-=box/4;}
+   if (d=='up'){snakeY-=box/4;}
+   if (d=='right'){snakeX+=box/4;}
+   if (d=='down'){snakeY+=box/4;}
+   }
  
-
- if (snakeX==-box||snakeX==20*box||snakeY==-box||snakeY==20*box)
+this.drVer();
+ if (snakeX==-box/4||snakeX==20*box-(box/4)||snakeY==-box/4||snakeY==20*box-(box/4))
  {game=false;}
 
  for (var i = 1;i<snake.length;i++) {
@@ -84,7 +104,9 @@ ctx.drawImage(foodImg,food.x,food.y,box,box);
 
  var newHead = {x:snakeX,y:snakeY};
  snake.unshift(newHead);
+//Food colision-----------------------------------------------
 if (snakeX==food.x&&snakeY==food.y){
+  
     score++;
     sc=score.toString()
     document.getElementById('scr').innerHTML= sc;
@@ -92,22 +114,31 @@ if (snakeX==food.x&&snakeY==food.y){
     x:Math.floor((Math.random()*18+1))*box,
     y:Math.floor((Math.random()*18+1))*box
 }
-}
-else {
- snake.pop();
-}
+grow=true;  }
 
-
- 
-
+else if(!grow) {
+ snake.pop();growFct=0;
 }
 
+if (grow){
+    growFct++
+    if(growFct==4){grow=false;}
+}
+}
 //------------------------------------------------------------
-
-var animate = setInterval(draw,90);
-function gameOver(){
-    
-    if (!game){clearInterval(animate)}
+function animation(){
+   requestAnimationFrame(animation)
+   if(game){
+  dirVer();
+   draw();
+   //gameOver();
+   
 }
-var anm = setInterval(gameOver, 90);
-
+}
+//animation()
+ var animate = setInterval(draw,1000/fps);
+ function gameOver(){
+    
+     if (!game){clearInterval(animate)}
+ }
+ var anm = setInterval(gameOver, 1000/fps);

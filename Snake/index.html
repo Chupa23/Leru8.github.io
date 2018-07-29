@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>Snake</title>
+        <style type="text/css">
+           body {
+               background-color: #1C1A21}
+
+             #scr {
+                 position:absolute;
+                 top :325px;
+                 left:280px;
+                 font-size: 50px;
+                 color: #FFFCF0}
+
+            #startB {
+                position: absolute;
+                top :355px;
+                left:10px;
+                background-color: #0C2733;
+                color:#FFFCF0;
+                font-family: Palatino;
+                font-size:20px;
+                border: 5px solid #053138;
+                border-radius: 10px;
+            }     
+            #dirB {
+                font-family: Palatino;
+                font-size:30px;
+                color :#FFFCF0;
+                background-image: url('buttonUp.png');
+                background-repeat: no-repeat;
+                background-size: 80px;
+                border:5px solid #0C2733;
+                border-radius: 10px;
+                width: 90px;
+                height: 74px;
+                position: absolute;
+            }
+            .upB {
+                top :380px;
+                left: 125px;
+            }
+            .leftB {
+                width: 70px;
+                height: 90px;
+                transform: rotate(-90deg);
+                left:35px;
+                top:450px;
+            }
+            .downB {
+                transform: rotate(180deg);
+                left: 125px;
+                top:520px;
+            }
+            .rightB {
+                width: 70px;
+                height: 90px;
+                transform: rotate(90deg);
+                left:215px;
+                top:450px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas id="canvas" width="340" height="340"></canvas>
+        <script src="snake.js"> </script>
+        <button id="startB" onclick="restart()">Start</button>
+        <button class="leftB" id="dirB" onclick="setDirectionB('left')"></button>
+        <button class="upB"id="dirB" onclick="setDirectionB('up')"></button>
+        <button class="rightB"id="dirB" onclick="setDirectionB('right')"></button>
+        <button class="downB"id="dirB" onclick="setDirectionB('down')"></button>
+        <h1 id="scr"> 0 </h1>
+    </body>
+</html>
