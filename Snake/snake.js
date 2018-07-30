@@ -38,10 +38,10 @@ var key=event.keyCode;
 }
 
 function setDirectionB(dir){
-    if (dir=='left'&&d!='right'){d='left'}
-    if (dir=='up'&&d!='down'){d='up'}
-    if (dir=='right'&&d!='left'){d='right'}
-    if (dir=='down'&&d!='up'){d='down'}
+    if (dir=='left'&&d!='right'){dr='left'}
+    if (dir=='up'&&d!='down'){dr='up'}
+    if (dir=='right'&&d!='left'){dr='right'}
+    if (dir=='down'&&d!='up'){dr='down'}
 }
 
 function restart(){
