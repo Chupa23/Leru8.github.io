@@ -1,0 +1,50 @@
+.item {
+ 
+    box-shadow: 15px 20px 10px rgba(0, 0, 0, 0.4);
+   background-color: rgb(255, 255, 255);
+   width: 450px;
+   height:50px;
+   list-style: none;
+   left: -100%;
+   padding-bottom: 20px;
+   padding-top: 20px;
+   padding-left:0px;
+   transition: all  0.3s ;
+  }
+
+.stock {
+    z-index: 0;
+    position: absolute;
+    top : 50%;
+    left:-100%;
+  background-color: rgb(191,179,168);
+    width: calc(100% - 40px);
+    height: 200px;
+    opacity: 30;
+    box-shadow: 15px 15px 10px  rgba(0,0,0,0.5); 
+    border-radius: 10px;
+}
+
+#_1 {
+   background-color: rgb(115,2,23);
+}
+
+#_2 {
+    background-color: rgb(118, 166, 166);
+}
+#_3 {
+  background-color: rgb(217, 183, 119);
+}
+
+#mainCont1 {
+   background-color: rgba(115, 2, 23, 0.8);
+}
+
+#mainCont2 {
+    background-color:  rgba(118, 166, 166,0.7);
+ }
+
+ #mainCont3 {
+    background-color: rgba(228, 183, 99, 0.6);
+ 
+ }

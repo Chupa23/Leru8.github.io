@@ -1,0 +1,55 @@
+@keyframes clickAn{
+    0%{
+        left : 20px;
+        padding-bottom: 40px;
+        padding-top:20px;
+        padding-left:370px; 
+       } 
+
+    50% {
+   left : 30px;
+   padding-bottom: 65px;
+   padding-top:65px;
+   padding-left:410px;
+  }
+
+  100%{
+   left : -10px;
+   padding-bottom: 40px;
+   padding-top:40px;
+   padding-left:370px; 
+  } 
+}
+
+
+@keyframes menu-animation {
+    0%{
+        left : -420px;
+        padding-bottom: 20px;
+        padding-top:20px;
+        padding-left:0px;
+    }
+
+    100%{
+        left : 0px;
+      padding-bottom: 50px;
+      padding-top:50px;
+      padding-left:400px;}
+
+}
+
+
+@keyframes contAn {
+  
+ 0%{
+     top : 50%;
+     left: -100%;
+     height: 200;
+ }
+ 
+ 100%{
+     left : 20px;
+      height: calc(100% - 40px);
+      top: 20px;
+ }
+}
