@@ -12,8 +12,5 @@ function Det(nms){
 
 function mult(){
   this.a = mat1;
-  this.b= mat2;
-
-
-   
+  this.b= mat2;  
 }

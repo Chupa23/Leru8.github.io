@@ -20,17 +20,18 @@ function set(){
 
       }
     }
-console.log(mat1);
-console.log(mat2);
-console.log(findC(2, mat1));
-console.log(findL(1,mat1));
+
+    Det(mat1);
+// console.log(mat1);
+// console.log(mat2);
+// console.log(findC(2, mat1));
+// console.log(findL(1,mat1));
 }
 
 function numCoords(line,col,nr){
    this.line =line;
    this.col=col;
    this.nr = nr;
-
 
 }
 
