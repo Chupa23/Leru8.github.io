@@ -11,7 +11,7 @@ var stage = 0;
 var targetPos = 0;
 
 var info = new txt(1100,1000,"TextTextTextTextText");
-var title = new txt(350, 300, "Relee Electronice");
+var title = new txt(250, 300, " ");
  
 function setup(){
 
@@ -187,7 +187,7 @@ title.move();
       showInfo = true;
       info.targetX = 300;
       info.targetY = 200;
-      info.t = "Alte exemple de relee sunt cele termice si cele de timp";
+      info.t = " ";// "Alte exemple de relee sunt cele termice si cele de timp";
       break;
 
   }
