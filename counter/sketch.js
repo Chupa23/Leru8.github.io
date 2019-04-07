@@ -18,9 +18,8 @@ let gateX = 0, gateY = 0; gateZ = -12;
 
 let y = 0;
 let x = 0;
-let jk;
-let flip;
-let gate;
+let jk, glip,gate,trns;
+
 
 let count = 0;
 let rotate = true;
@@ -33,6 +32,7 @@ function preload(){
  jk = loadImage('jk.png');
  flip = loadImage('flip.png');
  gate = loadImage('gate.png');
+ trns = loadImage('transistor.png');
 }
 
 function setup(){
@@ -86,6 +86,12 @@ function draw(){
     ambientMaterial(40);
     translate(x,y,zoom);
     model(body);
+    push();
+    translate(45,0,40);
+    texture(trns);
+    plane(150,60);
+    pop();
+ 
 
     //if(slide == 3) {
         push();
